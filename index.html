@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Formularz</title>
+    <style>
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            border: 2px solid #00ff00;
+            color: #00ff00;
+            background-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        input,
+        select {
+            border: 2px solid #00ff00;
+            padding: 20px;
+            font-size: 20px;
+            margin: 20px 0;
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #00ff00;
+            color: #00ff00;
+            background-image: url('s9.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            border: 2px solid #00ff00!important;
+            color: #00ff00;
+            background-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            background-color: black!important;
+        }
+
+        label {
+            color: #00ff00;
+        }
+
+        body {
+            background-color: #0f0f0f;
+            color: black;
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            font-size: large;
+            background-image: url('tlo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        label.error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <form id="myForm" action="process.php" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="firstName">Imię</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" required>
+                    <div class="error-message" id="firstName-error"></div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="lastName">Nazwisko</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" required>
+                    <div class="error-message" id="lastName-error"></div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="dob">Data urodzenia</label>
+                    <input type="date" class="form-control" id="dob" name="dob" required>
+                    <div class="error-message" id="dob-error"></div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="email">Adres email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                    <div class="error-message" id="email-error"></div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="province">Województwo</label>
+                    <select class="form-control" id="province" name="province" required>
+                        <option value="" disabled selected>Wybierz województwo</option>
+                        <option value="dolnośląskie">Dolnośląskie</option>
+                        <option value="kujawsko-pomorskie">Kujawsko-pomorskie</option>
+                        <option value="lubelskie">Lubelskie</option>
+                        <option value="lubuskie">Lubuskie</option>
+                        <option value="łódzkie">Łódzkie</option>
+                        <option value="małopolskie">Małopolskie</option>
+                        <option value="mazowieckie">Mazowieckie</option>
+                        <option value="opolskie">Opolskie</option>
+                        <option value="podkarpackie">Podkarpackie</option>
+                        <option value="podlaskie">Podlaskie</option>
+                        <option value="pomorskie">Pomorskie</option>
+                        <option value="śląskie">Śląskie</option>
+                        <option value="świętokrzyskie">Świętokrzyskie</option>
+                        <option value="warmińsko-mazurskie">Warmińsko-mazurskie</option>
+                        <option value="wielkopolskie">Wielkopolskie</option>
+                        <option value="zachodniopomorskie">Zachodniopomorskie</option>
+                    </select>
+                    <div class="error-message" id="province-error"></div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Płeć</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="mężczyzna" required>
+                        <label class="form-check-label" for="mężczyzna">Mężczyzna</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="kobieta" required>
+                        <label class="form-check-label" for="kobieta">Kobieta</label>
+                    </div>
+                    <div class="error-message" id="gender-error"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter">
+                    <label class="form-check-label" for="newsletter">Zgoda na newsletter</label>
+                    <div class="error-message" id="newsletter-error"></div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="submitButton">Wyślij</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myForm').validate({
+                errorPlacement: function (error, element) {
+                    if (element.attr("name") == "gender" || element.attr("name") == "newsletter") {
+                        error.appendTo(element.parent().parent().find('.error-message'));
+                    } else {
+                        error.appendTo(element.parent().find('.error-message'));
+                    }
+                },
+                rules: {
+                    firstName: 'required',
+                    lastName: 'required',
+                    dob: 'required',
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    province: 'required',
+                    gender: 'required',
+                   
+                },
+                messages: {
+                    firstName: 'Proszę podać imię',
+                    lastName: 'Proszę podać nazwisko',
+                    dob: 'Proszę podać datę urodzenia',
+                    email: {
+                        required: 'Proszę podać adres email',
+                        email: 'Proszę podać poprawny adres email'
+                    },
+                    province: 'Proszę wybrać województwo',
+                    gender: 'Proszę wybrać płeć',
+                  
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
